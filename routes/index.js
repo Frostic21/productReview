@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const productController = require('../controllers/productController.js')
+const reviewController = require('../controllers/reviewController.js')
+const {renderAddReviewForm} = require("../controllers/reviewController");
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.redirect('/products');
@@ -12,4 +14,6 @@ router.post('/products/edit/:id', productController.updateProduct);
 router.get('/products/add', productController.renderAddForm);
 router.post('/products/add', productController.addProduct);
 router.get('/products/delete/:id', productController.deleteProduct);
+
+router.get('/products/:productId/review/add', renderAddReviewForm)
 module.exports = router;
